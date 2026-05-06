@@ -245,7 +245,10 @@ export function AdminLineupPage({ eventId, eventName }: AdminLineupPageProps) {
       {notification && <div className="notification">{notification}</div>}
 
       <div className="admin-header">
-        <h1>Panel Admin: {eventName}</h1>
+        <div className="logo-container">
+          <img src="/logo.png" alt="Logo" className="header-logo admin" />
+          <h1>Panel Admin: {eventName}</h1>
+        </div>
         <div className="admin-stats">
           <span className="stat available">{available} disponibles</span>
           <span className="stat reserved">{reserved} reservados</span>

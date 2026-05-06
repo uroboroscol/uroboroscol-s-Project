@@ -19,7 +19,10 @@ export function EventInfoCard({
   return (
     <div className="event-info-card">
       <div className="event-header-top">
-        <h1 className="event-name">{eventName}</h1>
+        <div className="logo-container">
+          <img src="/logo.png" alt="Logo" className="header-logo" />
+          <h1 className="event-name">{eventName}</h1>
+        </div>
         <button className="btn btn-share" onClick={() => {
           navigator.share?.({ title: eventName, url: window.location.href })
             .catch(() => navigator.clipboard.writeText(window.location.href));
