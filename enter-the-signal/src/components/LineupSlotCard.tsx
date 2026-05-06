@@ -66,7 +66,7 @@ export function LineupSlotCard({
 
         {slot.status === "Confirmado" && (
           <button className="btn btn-copy" onClick={() => onCopy(slot)}>
-            Copiar WA
+            <span>📱</span> Copiar WA
           </button>
         )}
       </div>
