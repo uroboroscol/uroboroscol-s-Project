@@ -4,10 +4,10 @@
   --bg-card: #1a1a1a;
   --bg-modal: #1f1f1f;
   --border-subtle: #2a2a2a;
-  --neon-green: #39ff14;
-  --neon-purple: #bf00ff;
-  --neon-blue: #00d4ff;
-  --neon-pink: #ff00ff;
+  --neon-primary: #bf00ff; /* Morado Neón Principal */
+  --neon-secondary: #00d4ff;
+  --neon-accent: #ff00ff;
+  --neon-glow: rgba(191, 0, 255, 0.3);
   --text-primary: #ffffff;
   --text-secondary: #cccccc; /* Mejor contraste */
   --text-muted: #b3b3b3;    /* Cumple a11y */
@@ -36,15 +36,15 @@ body {
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   padding: 24px;
-  margin-bottom: 40px; /* Más espacio para respirar */
-  box-shadow: 0 0 20px rgba(57, 255, 20, 0.05);
+  margin-bottom: 40px;
+  box-shadow: 0 0 20px rgba(191, 0, 255, 0.05); /* Glow morado sutil */
 }
 
 .event-name {
   font-size: 28px;
   font-weight: 700;
   margin: 0 0 16px;
-  background: linear-gradient(90deg, var(--neon-green), var(--neon-purple));
+  background: linear-gradient(90deg, var(--neon-primary), var(--neon-accent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -90,17 +90,17 @@ body {
 }
 
 .stat-item.available {
-  border-color: var(--neon-green);
-  box-shadow: 0 0 10px rgba(57, 255, 20, 0.1);
+  border-color: var(--neon-primary);
+  box-shadow: 0 0 10px rgba(191, 0, 255, 0.1);
 }
 
 .stat-item.reserved {
-  border-color: rgba(57, 255, 20, 0.4); /* Unificado a verde */
+  border-color: rgba(191, 0, 255, 0.4);
   opacity: 0.8;
 }
 
 .stat-item.confirmed {
-  border-color: rgba(57, 255, 20, 0.6); /* Unificado a verde */
+  border-color: rgba(191, 0, 255, 0.6);
 }
 
 .stat-item.total {
@@ -137,8 +137,8 @@ body {
 }
 
 .slot-card.status-available {
-  border-color: var(--neon-green);
-  box-shadow: 0 0 15px rgba(57, 255, 20, 0.15);
+  border-color: var(--neon-primary);
+  box-shadow: 0 0 15px rgba(191, 0, 255, 0.1);
 }
 
 .slot-card.status-reserved {
@@ -147,8 +147,8 @@ body {
 }
 
 .slot-card.status-confirmed {
-  border-color: var(--neon-purple);
-  box-shadow: 0 0 15px rgba(191, 0, 255, 0.15);
+  border-color: var(--neon-accent);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.15);
 }
 
 .slot-card.status-cancelled {
@@ -180,8 +180,8 @@ body {
 
 .slot-status.status-available {
   background: transparent;
-  border: 1px solid rgba(57, 255, 20, 0.3);
-  color: var(--neon-green);
+  border: 1px solid rgba(191, 0, 255, 0.3);
+  color: var(--neon-primary);
   font-size: 10px;
 }
 
@@ -214,7 +214,7 @@ body {
 
 .artist-genre {
   font-size: 13px;
-  color: var(--neon-purple);
+  color: var(--neon-secondary);
 }
 
 .slot-social {
@@ -259,14 +259,14 @@ body {
 
 .btn-reserve {
   background: transparent;
-  border: 1px solid var(--neon-green);
-  color: var(--neon-green);
+  border: 1px solid var(--neon-primary);
+  color: var(--neon-primary);
 }
 
 .btn-reserve:hover {
-  background: var(--neon-green);
-  color: #000;
-  box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+  background: var(--neon-primary);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(191, 0, 255, 0.4);
 }
 
 .btn-confirm {
@@ -454,10 +454,10 @@ body {
   left: 50%;
   transform: translateX(-50%);
   background: var(--bg-card);
-  border: 1px solid var(--neon-green);
+  border: 1px solid var(--neon-primary);
   border-radius: 8px;
   padding: 12px 24px;
-  color: var(--neon-green);
+  color: var(--neon-primary);
   font-size: 14px;
   font-weight: 500;
   box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
@@ -526,8 +526,8 @@ body {
 }
 
 .admin-stats .stat.available {
-  color: var(--neon-green);
-  border: 1px solid rgba(57, 255, 20, 0.3);
+  color: var(--neon-primary);
+  border: 1px solid rgba(191, 0, 255, 0.3);
 }
 
 .admin-stats .stat.reserved {
@@ -536,9 +536,9 @@ body {
 }
 
 .admin-stats .stat.confirmed {
-  color: var(--neon-green);
+  color: var(--neon-primary);
   opacity: 0.8;
-  border: 1px solid rgba(57, 255, 20, 0.2);
+  border: 1px solid rgba(191, 0, 255, 0.2);
 }
 
 .admin-stats .stat.total {
