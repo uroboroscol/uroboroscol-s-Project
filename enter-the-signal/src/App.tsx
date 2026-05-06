@@ -7,20 +7,57 @@ function App() {
   const [searchParams] = useSearchParams();
   const isAdmin = searchParams.get("admin") === "true";
 
-  return isAdmin ? (
-    <AdminLineupPage
-      eventId="enter-the-signal-privado-1"
-      eventName="ENTER THE SIGNAL"
-    />
-  ) : (
-    <EventLineupPage
-      eventId="enter-the-signal-privado-1"
-      eventName="ENTER THE SIGNAL"
-      eventDate="Sábado 9 de mayo"
-      eventTime="1:00 p.m. - 2:00 a.m."
-      eventLocation="Terraza privada / espacio humilde"
-      eventEquipment="Controladora FLX4, Sonido básico, Visuales, Zona de videojuegos"
-    />
+  return (
+    <div className="app-container">
+      {/* Watermark Background */}
+      <div className="logo-watermark">
+        <img src="/logo.jpg" alt="" />
+      </div>
+
+      <header className="app-header">
+        <div className="container header-content">
+          <div className="logo-section">
+            <div className="uroboros-container">
+              <img src="/logo.jpg" alt="Logo" className="main-logo" />
+            </div>
+            <div className="brand-text">
+              <h2 className="brand-subtitle">ENTER THE</h2>
+              <h1 className="brand-title">SIGNAL</h1>
+            </div>
+          </div>
+          <div className="admin-toggle">
+            <button 
+              className={`toggle-btn ${!isAdmin ? 'active' : ''}`}
+              onClick={() => (window.location.href = "/?admin=false")}
+            >
+              Public
+            </button>
+            <button 
+              className={`toggle-btn ${isAdmin ? 'active' : ''}`}
+              onClick={() => (window.location.href = "/?admin=true")}
+            >
+              Admin
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {isAdmin ? (
+        <AdminLineupPage
+          eventId="enter-the-signal-privado-1"
+          eventName="ENTER THE SIGNAL"
+        />
+      ) : (
+        <EventLineupPage
+          eventId="enter-the-signal-privado-1"
+          eventName="ENTER THE SIGNAL"
+          eventDate="Sábado 9 de mayo"
+          eventTime="1:00 p.m. - 2:00 a.m."
+          eventLocation="Terraza privada / espacio humilde"
+          eventEquipment="Controladora FLX4, Sonido básico, Visuales, Zona de videojuegos"
+        />
+      )}
+    </div>
   );
 }
 
