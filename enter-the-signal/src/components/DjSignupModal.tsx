@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import type { DjData, LineupSlot } from "../lib/lineupService";
+import { CustomSelect } from "./CustomSelect";
 
 const GENRES = [
   "House",
@@ -105,22 +106,14 @@ export function DjSignupModal({ slot, isOpen, onClose, onSubmit }: DjSignupModal
             />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="genre">Género musical *</label>
-            <select
-              id="genre"
-              value={genre}
-              onChange={(e) => setGenre(e.target.value)}
-              required
-            >
-              <option value="">Selecciona un género</option>
-              {GENRES.map((g) => (
-                <option key={g} value={g}>
-                  {g}
-                </option>
-              ))}
-            </select>
-          </div>
+          <CustomSelect
+            label="Género musical"
+            value={genre}
+            options={GENRES}
+            onChange={setGenre}
+            placeholder="Selecciona un género"
+            required
+          />
 
           <div className="form-group">
             <label htmlFor="socialLink">Instagram</label>
