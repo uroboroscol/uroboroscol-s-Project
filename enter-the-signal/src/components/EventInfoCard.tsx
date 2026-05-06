@@ -20,7 +20,7 @@ export function EventInfoCard({
     <div className="event-info-card">
       <div className="event-header-top">
         <div className="logo-container">
-          <img src="/logo.png" alt="Logo" className="header-logo" />
+          <img src="/logo.jpg" alt="Logo" className="header-logo" />
           <h1 className="event-name">{eventName}</h1>
         </div>
         <button className="btn btn-share" onClick={() => {

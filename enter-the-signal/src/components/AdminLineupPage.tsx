@@ -246,7 +246,7 @@ export function AdminLineupPage({ eventId, eventName }: AdminLineupPageProps) {
 
       <div className="admin-header">
         <div className="logo-container">
-          <img src="/logo.png" alt="Logo" className="header-logo admin" />
+          <img src="/logo.jpg" alt="Logo" className="header-logo admin" />
           <h1>Panel Admin: {eventName}</h1>
         </div>
         <div className="admin-stats">
