@@ -1,5 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Inter:wght@400;600;700&display=swap');
 
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 10px;
+  border: 2px solid var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-primary);
+}
+
 :root {
   --bg-primary: #0a0a0a;
   --bg-secondary: #141414;
@@ -387,13 +406,15 @@ body {
 
 .modal-content {
   background: var(--bg-modal);
-  border: 1px solid var(--neon-purple);
+  border: 1px solid var(--neon-primary);
   border-radius: 16px;
   width: 100%;
   max-width: 480px;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 0 40px rgba(191, 0, 255, 0.3);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* El scroll va dentro */
+  box-shadow: 0 0 40px rgba(191, 0, 255, 0.2);
 }
 
 .modal-header {
@@ -402,6 +423,10 @@ body {
   align-items: center;
   padding: 20px 24px;
   border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-modal);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .modal-header h2 {
@@ -426,6 +451,8 @@ body {
 
 .signup-form {
   padding: 24px;
+  overflow-y: auto;
+  flex: 1;
 }
 
 .form-group {
@@ -434,10 +461,12 @@ body {
 
 .form-group label {
   display: block;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
+  font-size: 11px; /* Más pequeño para jerarquía */
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
 }
 
 .form-group input,
@@ -457,7 +486,9 @@ body {
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--neon-purple);
+  border-color: var(--neon-secondary); /* Cyan para contraste de acción */
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.1);
 }
 
 .form-group input::placeholder,
@@ -468,7 +499,7 @@ body {
 .form-group select {
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23fff' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); /* Flecha blanca */
   background-repeat: no-repeat;
   background-position: right 16px center;
 }
@@ -476,7 +507,12 @@ body {
 .form-actions {
   display: flex;
   gap: 12px;
-  margin-top: 24px;
+  padding: 20px 24px;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-modal);
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
 }
 
 .form-actions .btn {
