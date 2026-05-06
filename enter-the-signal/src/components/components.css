@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Inter:wght@400;600;700&display=swap');
+
 :root {
   --bg-primary: #0a0a0a;
   --bg-secondary: #141414;
@@ -21,7 +23,7 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   min-height: 100vh;
 }
 
@@ -113,6 +115,7 @@ body {
   font-size: 32px;
   font-weight: 700;
   color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .stat-label {
@@ -164,9 +167,11 @@ body {
 }
 
 .slot-position {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
   color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -0.5px;
 }
 
 .slot-status {
