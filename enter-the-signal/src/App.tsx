@@ -21,7 +21,6 @@ function App() {
               <img src="/logo.jpg" alt="Logo" className="main-logo" />
             </div>
             <div className="brand-text">
-              <h2 className="brand-subtitle">ENTER THE</h2>
               <h1 className="brand-title">UROBOROS</h1>
             </div>
           </div>
