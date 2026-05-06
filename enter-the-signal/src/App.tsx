@@ -22,7 +22,7 @@ function App() {
             </div>
             <div className="brand-text">
               <h2 className="brand-subtitle">ENTER THE</h2>
-              <h1 className="brand-title">SIGNAL</h1>
+              <h1 className="brand-title">UROBOROS</h1>
             </div>
           </div>
         </div>
