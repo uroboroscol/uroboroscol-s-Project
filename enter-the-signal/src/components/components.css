@@ -9,8 +9,8 @@
   --neon-blue: #00d4ff;
   --neon-pink: #ff00ff;
   --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --text-muted: #666666;
+  --text-secondary: #cccccc; /* Mejor contraste */
+  --text-muted: #b3b3b3;    /* Cumple a11y */
 }
 
 * {
@@ -36,8 +36,8 @@ body {
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   padding: 24px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 20px rgba(57, 255, 20, 0.1);
+  margin-bottom: 40px; /* Más espacio para respirar */
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.05);
 }
 
 .event-name {
@@ -91,22 +91,21 @@ body {
 
 .stat-item.available {
   border-color: var(--neon-green);
-  box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.1);
 }
 
 .stat-item.reserved {
-  border-color: var(--neon-blue);
-  box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+  border-color: rgba(57, 255, 20, 0.4); /* Unificado a verde */
+  opacity: 0.8;
 }
 
 .stat-item.confirmed {
-  border-color: var(--neon-purple);
-  box-shadow: 0 0 10px rgba(191, 0, 255, 0.2);
+  border-color: rgba(57, 255, 20, 0.6); /* Unificado a verde */
 }
 
 .stat-item.total {
-  border-color: var(--neon-pink);
-  box-shadow: 0 0 10px rgba(255, 0, 255, 0.2);
+  border-color: var(--border-subtle);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .stat-number {
@@ -180,8 +179,10 @@ body {
 }
 
 .slot-status.status-available {
-  background: rgba(57, 255, 20, 0.2);
+  background: transparent;
+  border: 1px solid rgba(57, 255, 20, 0.3);
   color: var(--neon-green);
+  font-size: 10px;
 }
 
 .slot-status.status-reserved {
@@ -257,12 +258,15 @@ body {
 }
 
 .btn-reserve {
-  background: var(--neon-green);
-  color: #000;
+  background: transparent;
+  border: 1px solid var(--neon-green);
+  color: var(--neon-green);
 }
 
 .btn-reserve:hover {
-  box-shadow: 0 0 15px var(--neon-green);
+  background: var(--neon-green);
+  color: #000;
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
 }
 
 .btn-confirm {
@@ -305,7 +309,7 @@ body {
 
 .artist-name.empty {
   color: var(--text-muted);
-  font-style: italic;
+  opacity: 0.7;
 }
 
 .btn-release {
@@ -523,18 +527,23 @@ body {
 
 .admin-stats .stat.available {
   color: var(--neon-green);
+  border: 1px solid rgba(57, 255, 20, 0.3);
 }
 
 .admin-stats .stat.reserved {
-  color: var(--neon-blue);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
 }
 
 .admin-stats .stat.confirmed {
-  color: var(--neon-purple);
+  color: var(--neon-green);
+  opacity: 0.8;
+  border: 1px solid rgba(57, 255, 20, 0.2);
 }
 
 .admin-stats .stat.total {
-  color: var(--neon-pink);
+  color: var(--text-primary);
+  background: var(--border-subtle);
 }
 
 .admin-slots-grid {
