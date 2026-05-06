@@ -23,12 +23,19 @@ npm run lint
 
 ## Estructura
 - `src/lib/supabase.ts` - Cliente Supabase
-- `src/lib/lineupService.ts` - CRUD para lineup_slots (fetch, reserve, confirm, cancel, release)
-- `src/components/` - UI (EventInfoCard, LineupStats, LineupSlotCard, DjSignupModal, EventLineupPage)
+- `src/lib/lineupService.ts` - CRUD para event_lineup_slots (fetch, reserve, confirm, cancel, release)
+- `src/components/` - UI (EventInfoCard, LineupStats, LineupSlotCard, DjSignupModal, EditDjModal, EventLineupPage, AdminLineupPage)
 - `src/components/components.css` - Estilos dark/rave con neón
 
-## Supabase Schema (esperado)
-Tabla `lineup_slots`:
-- `id`, `eventId`, `position`, `status` (available|reserved|confirmed|cancelled)
-- `artistName`, `genre`, `socialLink`, `experience`
-- `reservedAt`, `confirmedAt`, `createdAt`
+## Supabase Schema
+Tabla `event_lineup_slots`:
+- `id` (uuid), `event_id` (text FK → events.id)
+- `slot_label` (int), `status` ('Disponible'|'Reservado'|'Confirmado'|'Cancelado')
+- `dj_artist_name`, `dj_real_name`, `whatsapp`
+- `instagram`, `music_genre`, `music_link`, `comment`
+- `start_time`, `end_time`, `event_name`, `event_date`
+- `created_at`, `updated_at`
+
+## Rutas
+- Usuario: `/?` o `/?admin=false`
+- Admin: `/?admin=true`

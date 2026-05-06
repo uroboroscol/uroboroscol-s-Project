@@ -5,9 +5,9 @@ interface LineupStatsProps {
 }
 
 export function LineupStats({ slots }: LineupStatsProps) {
-  const available = slots.filter((s) => s.status === "available").length;
-  const reserved = slots.filter((s) => s.status === "reserved").length;
-  const confirmed = slots.filter((s) => s.status === "confirmed").length;
+  const available = slots.filter((s) => s.status === "Disponible").length;
+  const reserved = slots.filter((s) => s.status === "Reservado").length;
+  const confirmed = slots.filter((s) => s.status === "Confirmado").length;
   const total = slots.length;
 
   return (

@@ -7,9 +7,6 @@ import type { LineupSlot, DjData } from "../lib/lineupService";
 import {
   fetchLineupSlots,
   reserveLineupSlot,
-  confirmLineupSlot,
-  cancelLineupSlot,
-  releaseLineupSlot,
   copyWhatsappConfirmation,
 } from "../lib/lineupService";
 
@@ -63,36 +60,6 @@ export function EventLineupPage({
     setModalOpen(true);
   };
 
-  const handleConfirm = async (slot: LineupSlot) => {
-    const result = await confirmLineupSlot(slot.id);
-    if (result.error) {
-      showNotification(`Error: ${result.error}`);
-    } else {
-      showNotification("¡Slot confirmado!");
-      loadSlots();
-    }
-  };
-
-  const handleCancel = async (slot: LineupSlot) => {
-    const result = await cancelLineupSlot(slot.id);
-    if (result.error) {
-      showNotification(`Error: ${result.error}`);
-    } else {
-      showNotification("Slot cancelado");
-      loadSlots();
-    }
-  };
-
-  const handleRelease = async (slot: LineupSlot) => {
-    const result = await releaseLineupSlot(slot.id);
-    if (result.error) {
-      showNotification(`Error: ${result.error}`);
-    } else {
-      showNotification("Slot liberado");
-      loadSlots();
-    }
-  };
-
   const handleCopy = (slot: LineupSlot) => {
     copyWhatsappConfirmation(slot);
     showNotification("¡Mensaje copiado al portapapeles!");
@@ -101,9 +68,13 @@ export function EventLineupPage({
   const handleSubmit = async (slotId: string, djData: DjData) => {
     const result = await reserveLineupSlot(slotId, djData);
     if (result.error) {
-      showNotification(`Error: ${result.error}`);
+      if (result.error.includes("No rows") || result.error.includes("0 rows")) {
+        showNotification("Lo sentimos, este slot acaba de ser reservado por otra persona.");
+      } else {
+        showNotification(`Error: ${result.error}`);
+      }
     } else {
-      showNotification("¡Slot reservado!");
+      showNotification("Tu horario quedó reservado. El organizador confirmará tu espacio.");
       loadSlots();
     }
   };
@@ -133,9 +104,6 @@ export function EventLineupPage({
               key={slot.id}
               slot={slot}
               onReserve={handleReserve}
-              onConfirm={handleConfirm}
-              onCancel={handleCancel}
-              onRelease={handleRelease}
               onCopy={handleCopy}
             />
           ))}

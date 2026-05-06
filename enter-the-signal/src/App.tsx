@@ -1,8 +1,18 @@
+import { useSearchParams } from "react-router-dom";
 import { EventLineupPage } from "./components/EventLineupPage";
+import { AdminLineupPage } from "./components/AdminLineupPage";
 import "./components/components.css";
 
 function App() {
-  return (
+  const [searchParams] = useSearchParams();
+  const isAdmin = searchParams.get("admin") === "true";
+
+  return isAdmin ? (
+    <AdminLineupPage
+      eventId="enter-the-signal-privado-1"
+      eventName="ENTER THE SIGNAL"
+    />
+  ) : (
     <EventLineupPage
       eventId="enter-the-signal-privado-1"
       eventName="ENTER THE SIGNAL"

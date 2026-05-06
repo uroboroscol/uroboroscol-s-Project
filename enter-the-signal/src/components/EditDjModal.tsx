@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import type { DjData, LineupSlot } from "../lib/lineupService";
+import type { LineupSlot, DjData } from "../lib/lineupService";
 
 const GENRES = [
   "House",
@@ -16,21 +16,21 @@ const GENRES = [
   "Otro",
 ];
 
-interface DjSignupModalProps {
+interface EditDjModalProps {
   slot: LineupSlot;
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (slotId: string, djData: DjData) => void;
+  onSubmit: (slotId: string, djData: Partial<DjData>) => void;
 }
 
-export function DjSignupModal({ slot, isOpen, onClose, onSubmit }: DjSignupModalProps) {
-  const [artistName, setArtistName] = useState("");
-  const [realName, setRealName] = useState("");
-  const [whatsappContact, setWhatsappContact] = useState("");
-  const [genre, setGenre] = useState("");
-  const [socialLink, setSocialLink] = useState("");
-  const [musicLink, setMusicLink] = useState("");
-  const [experience, setExperience] = useState("");
+export function EditDjModal({ slot, isOpen, onClose, onSubmit }: EditDjModalProps) {
+  const [artistName, setArtistName] = useState(slot.djArtistName || "");
+  const [realName, setRealName] = useState(slot.djRealName || "");
+  const [whatsappContact, setWhatsappContact] = useState(slot.whatsapp || "");
+  const [genre, setGenre] = useState(slot.musicGenre || "");
+  const [socialLink, setSocialLink] = useState(slot.instagram || "");
+  const [musicLink, setMusicLink] = useState(slot.musicLink || "");
+  const [experience, setExperience] = useState(slot.comment || "");
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -46,13 +46,6 @@ export function DjSignupModal({ slot, isOpen, onClose, onSubmit }: DjSignupModal
       experience: experience.trim() || undefined,
     });
 
-    setArtistName("");
-    setRealName("");
-    setWhatsappContact("");
-    setGenre("");
-    setSocialLink("");
-    setMusicLink("");
-    setExperience("");
     onClose();
   };
 
@@ -62,7 +55,7 @@ export function DjSignupModal({ slot, isOpen, onClose, onSubmit }: DjSignupModal
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>Inscribirse - {slot.startTime ? slot.startTime.slice(0, 5) : "??"} - {slot.endTime ? slot.endTime.slice(0, 5) : "??"}</h2>
+          <h2>Editar DJ - {slot.startTime ? slot.startTime.slice(0, 5) : "??"} - {slot.endTime ? slot.endTime.slice(0, 5) : "??"}</h2>
           <button className="modal-close" onClick={onClose}>
             ×
           </button>
@@ -159,8 +152,8 @@ export function DjSignupModal({ slot, isOpen, onClose, onSubmit }: DjSignupModal
             <button type="button" className="btn btn-cancel" onClick={onClose}>
               Cancelar
             </button>
-            <button type="submit" className="btn btn-reserve">
-              Reservar Slot
+            <button type="submit" className="btn btn-confirm">
+              Guardar Cambios
             </button>
           </div>
         </form>
