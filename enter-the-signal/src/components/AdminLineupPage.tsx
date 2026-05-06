@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import type { LineupSlot } from "../lib/lineupService";
 import {
   fetchLineupSlots,
@@ -159,7 +159,7 @@ export function AdminLineupPage({ eventId, eventName }: AdminLineupPageProps) {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState<LineupSlot | null>(null);
 
-  const loadSlots = async () => {
+  const loadSlots = useCallback(async () => {
     setLoading(true);
     setError(null);
     const result = await fetchLineupSlots(eventId);
@@ -169,11 +169,11 @@ export function AdminLineupPage({ eventId, eventName }: AdminLineupPageProps) {
       setSlots(result.data);
     }
     setLoading(false);
-  };
+  }, [eventId]);
 
   useEffect(() => {
     loadSlots();
-  }, [eventId]);
+  }, [loadSlots]);
 
   const showNotification = (message: string) => {
     setNotification(message);

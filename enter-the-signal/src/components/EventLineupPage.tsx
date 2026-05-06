@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { EventInfoCard } from "./EventInfoCard";
 import { LineupStats } from "./LineupStats";
 import { LineupSlotCard } from "./LineupSlotCard";
@@ -34,7 +34,7 @@ export function EventLineupPage({
   const [selectedSlot, setSelectedSlot] = useState<LineupSlot | null>(null);
   const [notification, setNotification] = useState<string | null>(null);
 
-  const loadSlots = async () => {
+  const loadSlots = useCallback(async () => {
     setLoading(true);
     setError(null);
     const result = await fetchLineupSlots(eventId);
@@ -44,11 +44,11 @@ export function EventLineupPage({
       setSlots(result.data);
     }
     setLoading(false);
-  };
+  }, [eventId]);
 
   useEffect(() => {
     loadSlots();
-  }, [eventId]);
+  }, [loadSlots]);
 
   const showNotification = (message: string) => {
     setNotification(message);
