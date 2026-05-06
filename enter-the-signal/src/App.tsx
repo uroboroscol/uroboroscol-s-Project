@@ -25,20 +25,6 @@ function App() {
               <h1 className="brand-title">SIGNAL</h1>
             </div>
           </div>
-          <div className="admin-toggle">
-            <button 
-              className={`toggle-btn ${!isAdmin ? 'active' : ''}`}
-              onClick={() => (window.location.href = "/?admin=false")}
-            >
-              Public
-            </button>
-            <button 
-              className={`toggle-btn ${isAdmin ? 'active' : ''}`}
-              onClick={() => (window.location.href = "/?admin=true")}
-            >
-              Admin
-            </button>
-          </div>
         </div>
       </header>
 
