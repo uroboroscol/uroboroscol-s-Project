@@ -36,7 +36,7 @@ export function LineupSlotCard({
         </div>
       ) : (
         <div className="slot-artist">
-          <span className="artist-name empty">Sin asignar</span>
+          <span className="artist-name empty">[ --- ]</span>
         </div>
       )}
 

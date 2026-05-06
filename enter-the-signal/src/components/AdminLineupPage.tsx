@@ -112,7 +112,7 @@ function AdminSlotCard({
           </div>
         </div>
       ) : (
-        <div className="slot-empty">Sin inscribir</div>
+        <div className="slot-empty">[ --- ]</div>
       )}
 
       <div className="slot-actions">
