@@ -53,21 +53,33 @@ body {
 }
 
 .event-details {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px 24px;
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .detail-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: var(--text-secondary);
-  font-size: 14px;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .detail-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px; /* Ancho fijo para alineación vertical perfecta */
+  height: 24px;
   font-size: 16px;
+  background: rgba(191, 0, 255, 0.1);
+  border-radius: 6px;
+  flex-shrink: 0;
 }
 
 .lineup-stats {
