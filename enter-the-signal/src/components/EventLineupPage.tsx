@@ -3,6 +3,7 @@ import { EventInfoCard } from "./EventInfoCard";
 import { LineupStats } from "./LineupStats";
 import { LineupSlotCard } from "./LineupSlotCard";
 import { DjSignupModal } from "./DjSignupModal";
+import { TimeTable } from "./TimeTable";
 import type { LineupSlot, DjData } from "../lib/lineupService";
 import {
   fetchLineupSlots,
@@ -83,32 +84,45 @@ export function EventLineupPage({
     <div className="event-lineup-page">
       {notification && <div className="notification">{notification}</div>}
 
-      <EventInfoCard
-        eventName={eventName}
-        eventDate={eventDate}
-        eventTime={eventTime}
-        eventLocation={eventLocation}
-        eventEquipment={eventEquipment}
-        slots={slots}
-      />
+      <div className="lineup-layout">
+        <div className="lineup-main">
+          <EventInfoCard
+            eventName={eventName}
+            eventDate={eventDate}
+            eventTime={eventTime}
+            eventLocation={eventLocation}
+            eventEquipment={eventEquipment}
+            slots={slots}
+          />
 
-      <LineupStats slots={slots} />
+          <LineupStats slots={slots} />
 
-      {loading && <div className="loading">Cargando lineup...</div>}
-      {error && <div className="error-message">{error}</div>}
+          {loading && <div className="loading">Cargando lineup...</div>}
+          {error && <div className="error-message">{error}</div>}
 
-      {!loading && !error && (
-        <div className="slots-grid">
-          {slots.map((slot) => (
-            <LineupSlotCard
-              key={slot.id}
-              slot={slot}
-              onReserve={handleReserve}
-              onCopy={handleCopy}
-            />
-          ))}
+          {!loading && !error && (
+            <div className="slots-grid">
+              {slots.map((slot) => (
+                <LineupSlotCard
+                  key={slot.id}
+                  slot={slot}
+                  onReserve={handleReserve}
+                  onCopy={handleCopy}
+                />
+              ))}
+            </div>
+          )}
         </div>
-      )}
+
+        <aside className="lineup-sidebar">
+          <div className="timetable-sticky">
+            <TimeTable
+              eventId={eventId}
+              eventName={eventName}
+            />
+          </div>
+        </aside>
+      </div>
 
       {selectedSlot && (
         <DjSignupModal

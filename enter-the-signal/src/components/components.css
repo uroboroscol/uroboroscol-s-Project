@@ -55,6 +55,55 @@ body {
   margin: 0 auto;
 }
 
+.lineup-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.lineup-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.lineup-sidebar {
+  width: 320px;
+  flex-shrink: 0;
+}
+
+.timetable-sticky {
+  position: sticky;
+  top: 16px;
+  filter: drop-shadow(0 0 20px rgba(191, 0, 255, 0.25)) drop-shadow(0 0 40px rgba(0, 212, 255, 0.15));
+}
+
+.timetable-sticky .timetable-wrapper {
+  padding: 0;
+  min-height: 0;
+}
+
+.timetable-sticky .timetable-story {
+  max-width: 100%;
+  border-radius: 12px;
+}
+
+@media (max-width: 900px) {
+  .lineup-layout {
+    flex-direction: column;
+  }
+
+  .lineup-sidebar {
+    width: 100%;
+    order: 2;
+  }
+
+  .timetable-sticky {
+    position: static;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}
+
 .event-info-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);

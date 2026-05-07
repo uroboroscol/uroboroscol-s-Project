@@ -9,6 +9,7 @@ import {
   copyWhatsappConfirmation,
 } from "../lib/lineupService";
 import { EditDjModal } from "./EditDjModal";
+import { TimeTable } from "./TimeTable";
 
 interface AdminSlotCardProps {
   slot: LineupSlot;
@@ -244,37 +245,50 @@ export function AdminLineupPage({ eventId, eventName }: AdminLineupPageProps) {
     <div className="admin-lineup-page">
       {notification && <div className="notification">{notification}</div>}
 
-      <div className="admin-header">
-        <div className="logo-container">
-          <img src="/logo.jpg" alt="Logo" className="header-logo admin" />
-          <h1>Panel Admin: {eventName}</h1>
-        </div>
-        <div className="admin-stats">
-          <span className="stat available">{available} disponibles</span>
-          <span className="stat reserved">{reserved} reservados</span>
-          <span className="stat confirmed">{confirmed} confirmados</span>
-          <span className="stat total">{total} total</span>
-        </div>
-      </div>
+      <div className="lineup-layout">
+        <div className="lineup-main">
+          <div className="admin-header">
+            <div className="logo-container">
+              <img src="/logo.jpg" alt="Logo" className="header-logo admin" />
+              <h1>Panel Admin: {eventName}</h1>
+            </div>
+            <div className="admin-stats">
+              <span className="stat available">{available} disponibles</span>
+              <span className="stat reserved">{reserved} reservados</span>
+              <span className="stat confirmed">{confirmed} confirmados</span>
+              <span className="stat total">{total} total</span>
+            </div>
+          </div>
 
-      {loading && <div className="loading">Cargando...</div>}
-      {error && <div className="error-message">{error}</div>}
+          {loading && <div className="loading">Cargando...</div>}
+          {error && <div className="error-message">{error}</div>}
 
-      {!loading && !error && (
-        <div className="admin-slots-grid">
-          {slots.map((slot) => (
-            <AdminSlotCard
-              key={slot.id}
-              slot={slot}
-              onConfirm={handleConfirm}
-              onCancel={handleCancel}
-              onRelease={handleRelease}
-              onEdit={handleEdit}
-              onCopy={handleCopy}
+          {!loading && !error && (
+            <div className="admin-slots-grid">
+              {slots.map((slot) => (
+                <AdminSlotCard
+                  key={slot.id}
+                  slot={slot}
+                  onConfirm={handleConfirm}
+                  onCancel={handleCancel}
+                  onRelease={handleRelease}
+                  onEdit={handleEdit}
+                  onCopy={handleCopy}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+
+        <aside className="lineup-sidebar">
+          <div className="timetable-sticky">
+            <TimeTable
+              eventId={eventId}
+              eventName={eventName}
             />
-          ))}
-        </div>
-      )}
+          </div>
+        </aside>
+      </div>
 
       {selectedSlot && (
         <EditDjModal
