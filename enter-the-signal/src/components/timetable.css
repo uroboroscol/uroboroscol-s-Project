@@ -30,7 +30,10 @@
 }
 
 .timetable-story.story-export {
-  aspect-ratio: 9 / 16;
+  aspect-ratio: auto;
+  overflow: visible;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .timetable-story:not(.story-export) {
@@ -65,7 +68,7 @@
 }
 
 .timetable-story.story-export .timetable-content {
-  height: 100%;
+  height: auto;
 }
 
 .ouroboros-logo {
@@ -165,8 +168,8 @@
 }
 
 .timetable-story.story-export .timetable-slots {
-  flex: 1;
-  overflow-y: auto;
+  flex: none;
+  overflow-y: visible;
 }
 
 .timetable-slot {
@@ -255,7 +258,7 @@
 }
 
 .timetable-story.story-export .timetable-footer {
-  margin-top: auto;
+  margin-top: 0;
   padding-top: 16px;
 }
 
@@ -323,10 +326,11 @@
 }
 
 .timetable-export-hidden {
-  position: fixed;
-  top: -9999px;
+  position: absolute;
+  top: 0;
   left: -9999px;
   width: 420px;
   z-index: -1;
   pointer-events: none;
+  opacity: 0;
 }
