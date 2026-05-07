@@ -10,20 +10,58 @@ interface TimeTableSidebarProps {
   loading?: boolean;
 }
 
+function restoreStyles(el: HTMLDivElement) {
+  el.style.position = "";
+  el.style.top = "";
+  el.style.left = "";
+  el.style.zIndex = "";
+  el.style.opacity = "";
+  el.style.pointerEvents = "";
+}
+
 export function TimeTableSidebar({ eventId, eventName, slots, loading }: TimeTableSidebarProps) {
   const exportRef = useRef<HTMLDivElement>(null);
   const [downloading, setDownloading] = useState(false);
+  const [buttonHover, setButtonHover] = useState(false);
 
   const handleDownload = useCallback(async () => {
     if (!exportRef.current) return;
     setDownloading(true);
 
-    try {
-      await new Promise((r) => setTimeout(r, 100));
+    const el = exportRef.current;
 
-      const dataUrl = await toPng(exportRef.current, {
+    try {
+      el.style.position = "fixed";
+      el.style.top = "0";
+      el.style.left = "0";
+      el.style.zIndex = "-1";
+      el.style.opacity = "0.01";
+      el.style.pointerEvents = "none";
+
+      await document.fonts.ready;
+      await new Promise((r) => setTimeout(r, 500));
+
+      const rect = el.getBoundingClientRect();
+      console.log("Export dimensions:", rect.width, "x", rect.height);
+
+      if (rect.width === 0 || rect.height === 0) {
+        throw new Error("Export element has zero dimensions");
+      }
+
+      const dataUrl = await toPng(el, {
         quality: 1,
+        pixelRatio: 2,
+        backgroundColor: "#0a0a0c",
+        cacheBust: true,
+        style: {
+          opacity: "1",
+          position: "relative",
+          top: "0",
+          left: "0",
+        },
       });
+
+      restoreStyles(el);
 
       const link = document.createElement("a");
       link.download = `timetable-${eventName.toLowerCase().replace(/\s+/g, "-")}.png`;
@@ -31,12 +69,11 @@ export function TimeTableSidebar({ eventId, eventName, slots, loading }: TimeTab
       link.click();
     } catch (err) {
       console.error("Error al generar la imagen:", err);
+      restoreStyles(el);
     } finally {
       setDownloading(false);
     }
   }, [eventName]);
-
-  const [buttonHover, setButtonHover] = useState(false);
 
   return (
     <div className="timetable-sidebar">
