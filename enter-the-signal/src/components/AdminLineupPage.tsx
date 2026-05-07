@@ -284,6 +284,8 @@ export function AdminLineupPage({ eventId, eventName }: AdminLineupPageProps) {
           <TimeTableSidebar
             eventId={eventId}
             eventName={eventName}
+            slots={slots}
+            loading={loading}
           />
         </aside>
       </div>

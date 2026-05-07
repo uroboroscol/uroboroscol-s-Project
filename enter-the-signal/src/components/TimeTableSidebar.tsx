@@ -1,13 +1,16 @@
 import { useRef, useState, useCallback } from "react";
 import { toPng } from "html-to-image";
 import { TimeTable } from "./TimeTable";
+import type { LineupSlot } from "../lib/lineupService";
 
 interface TimeTableSidebarProps {
   eventId: string;
   eventName: string;
+  slots?: LineupSlot[];
+  loading?: boolean;
 }
 
-export function TimeTableSidebar({ eventId, eventName }: TimeTableSidebarProps) {
+export function TimeTableSidebar({ eventId, eventName, slots, loading }: TimeTableSidebarProps) {
   const exportRef = useRef<HTMLDivElement>(null);
   const [downloading, setDownloading] = useState(false);
 
@@ -16,6 +19,8 @@ export function TimeTableSidebar({ eventId, eventName }: TimeTableSidebarProps) 
     setDownloading(true);
 
     try {
+      await new Promise((r) => setTimeout(r, 100));
+
       const dataUrl = await toPng(exportRef.current, {
         quality: 1,
       });
@@ -61,11 +66,11 @@ export function TimeTableSidebar({ eventId, eventName }: TimeTableSidebarProps) 
       </button>
 
       <div className="timetable-sticky">
-        <TimeTable eventId={eventId} eventName={eventName} />
+        <TimeTable eventId={eventId} eventName={eventName} slots={slots} loading={loading} />
       </div>
 
       <div className="timetable-export-hidden" ref={exportRef} aria-hidden="true">
-        <TimeTable eventId={eventId} eventName={eventName} exportMode />
+        <TimeTable eventId={eventId} eventName={eventName} exportMode slots={slots} loading={loading} />
       </div>
     </div>
   );

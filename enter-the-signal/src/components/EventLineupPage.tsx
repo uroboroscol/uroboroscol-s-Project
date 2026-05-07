@@ -118,6 +118,8 @@ export function EventLineupPage({
           <TimeTableSidebar
             eventId={eventId}
             eventName={eventName}
+            slots={slots}
+            loading={loading}
           />
         </aside>
       </div>

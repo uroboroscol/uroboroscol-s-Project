@@ -7,21 +7,27 @@ interface TimeTableProps {
   eventId: string;
   eventName: string;
   exportMode?: boolean;
+  slots?: LineupSlot[];
+  loading?: boolean;
 }
 
-export function TimeTable({ eventId, eventName, exportMode = false }: TimeTableProps) {
-  const [slots, setSlots] = useState<LineupSlot[]>([]);
-  const [loading, setLoading] = useState(true);
+export function TimeTable({ eventId, eventName, exportMode = false, slots: externalSlots, loading: externalLoading }: TimeTableProps) {
+  const [internalSlots, setInternalSlots] = useState<LineupSlot[]>([]);
+  const [internalLoading, setInternalLoading] = useState(true);
 
   useEffect(() => {
+    if (externalSlots !== undefined) return;
     const load = async () => {
-      setLoading(true);
+      setInternalLoading(true);
       const result = await fetchLineupSlots(eventId);
-      if (result.data) setSlots(result.data);
-      setLoading(false);
+      if (result.data) setInternalSlots(result.data);
+      setInternalLoading(false);
     };
     load();
-  }, [eventId]);
+  }, [eventId, externalSlots]);
+
+  const slots = externalSlots ?? internalSlots;
+  const loading = externalLoading ?? internalLoading;
 
   const visibleSlots = slots.filter(
     (s) => s.status === "Confirmado" || s.status === "Disponible"
