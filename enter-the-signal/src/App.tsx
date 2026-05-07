@@ -8,6 +8,16 @@ import "./components/timetable.css";
 function App() {
   const [searchParams] = useSearchParams();
   const isAdmin = searchParams.get("admin") === "true";
+  const isTimeTable = searchParams.get("view") === "timetable";
+
+  if (isTimeTable) {
+    return (
+      <TimeTable
+        eventId="enter-the-signal-privado-1"
+        eventName="ENTER THE SIGNAL"
+      />
+    );
+  }
 
   return (
     <div className="app-container">

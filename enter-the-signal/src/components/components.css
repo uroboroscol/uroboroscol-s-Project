@@ -921,36 +921,3 @@ body {
 .btn-edit:hover {
   box-shadow: 0 0 15px var(--neon-purple);
 }
-
-/* TimeTable Preview Sections */
-.admin-timetable-preview,
-.public-timetable-preview {
-  margin-top: 60px;
-  padding-top: 40px;
-  border-top: 1px solid var(--border-subtle);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.section-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 30px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  background: linear-gradient(90deg, var(--neon-primary), var(--neon-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Reducir escala en previsualización si es necesario */
-@media (min-width: 768px) {
-  .timetable-story {
-    transform: scale(0.9);
-    transform-origin: top center;
-    margin-bottom: -50px; /* Compensar escala */
-  }
-}

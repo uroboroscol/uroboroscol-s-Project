@@ -6,21 +6,13 @@ import "./timetable.css";
 interface TimeTableProps {
   eventId: string;
   eventName: string;
-  slots?: LineupSlot[];
-  loading?: boolean;
 }
 
-export function TimeTable({ eventId, eventName, slots: initialSlots, loading: initialLoading }: TimeTableProps) {
-  const [slots, setSlots] = useState<LineupSlot[]>(initialSlots || []);
-  const [loading, setLoading] = useState(initialLoading ?? !initialSlots);
+export function TimeTable({ eventId, eventName }: TimeTableProps) {
+  const [slots, setSlots] = useState<LineupSlot[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (initialSlots) {
-      setSlots(initialSlots);
-      setLoading(initialLoading ?? false);
-      return;
-    }
-
     const load = async () => {
       setLoading(true);
       const result = await fetchLineupSlots(eventId);
@@ -28,7 +20,7 @@ export function TimeTable({ eventId, eventName, slots: initialSlots, loading: in
       setLoading(false);
     };
     load();
-  }, [eventId, initialSlots, initialLoading]);
+  }, [eventId]);
 
   const visibleSlots = slots.filter(
     (s) => s.status === "Confirmado" || s.status === "Disponible"
