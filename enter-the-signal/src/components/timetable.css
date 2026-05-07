@@ -3,17 +3,23 @@
 .timetable-wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
   background: #000;
   padding: 16px;
+}
+
+.timetable-wrapper:not(.timetable-export) {
+  align-items: flex-start;
+}
+
+.timetable-wrapper.timetable-export {
+  align-items: center;
+  min-height: 100vh;
 }
 
 .timetable-story {
   position: relative;
   width: 100%;
   max-width: 420px;
-  aspect-ratio: 9 / 16;
   background: #0a0a0c;
   border: 1px solid rgba(191, 0, 255, 0.3);
   border-radius: 16px;
@@ -22,6 +28,14 @@
     0 0 60px rgba(191, 0, 255, 0.2),
     0 0 120px rgba(0, 212, 255, 0.1),
     inset 0 0 60px rgba(0, 0, 0, 0.5);
+}
+
+.timetable-story.story-export {
+  aspect-ratio: 9 / 16;
+}
+
+.timetable-story:not(.story-export) {
+  height: auto;
 }
 
 .timetable-bg {
@@ -48,8 +62,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
   padding: 32px 24px 24px;
+}
+
+.timetable-story.story-export .timetable-content {
+  height: 100%;
 }
 
 .ouroboros-logo {
@@ -142,12 +159,15 @@
 
 .timetable-slots {
   width: 100%;
-  flex: 1;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding: 4px 0;
+}
+
+.timetable-story.story-export .timetable-slots {
+  flex: 1;
+  overflow-y: auto;
 }
 
 .timetable-slot {
@@ -232,6 +252,10 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
+  padding-top: 24px;
+}
+
+.timetable-story.story-export .timetable-footer {
   margin-top: auto;
   padding-top: 16px;
 }

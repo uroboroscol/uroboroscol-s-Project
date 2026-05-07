@@ -80,11 +80,7 @@ body {
 .timetable-sticky .timetable-wrapper {
   padding: 0;
   min-height: 0;
-}
-
-.timetable-sticky .timetable-story {
-  max-width: 100%;
-  border-radius: 12px;
+  background: transparent;
 }
 
 @media (max-width: 900px) {

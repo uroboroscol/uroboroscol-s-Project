@@ -6,9 +6,10 @@ import "./timetable.css";
 interface TimeTableProps {
   eventId: string;
   eventName: string;
+  exportMode?: boolean;
 }
 
-export function TimeTable({ eventId, eventName }: TimeTableProps) {
+export function TimeTable({ eventId, eventName, exportMode = false }: TimeTableProps) {
   const [slots, setSlots] = useState<LineupSlot[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -27,8 +28,8 @@ export function TimeTable({ eventId, eventName }: TimeTableProps) {
   );
 
   return (
-    <div className="timetable-wrapper">
-      <div className="timetable-story">
+    <div className={`timetable-wrapper${exportMode ? " timetable-export" : ""}`}>
+      <div className={`timetable-story${exportMode ? " story-export" : ""}`}>
         <div className="timetable-bg" />
         <div className="timetable-pcb" />
 
