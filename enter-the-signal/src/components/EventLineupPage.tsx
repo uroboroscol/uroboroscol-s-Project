@@ -3,7 +3,7 @@ import { EventInfoCard } from "./EventInfoCard";
 import { LineupStats } from "./LineupStats";
 import { LineupSlotCard } from "./LineupSlotCard";
 import { DjSignupModal } from "./DjSignupModal";
-import { TimeTable } from "./TimeTable";
+import { TimeTableSidebar } from "./TimeTableSidebar";
 import type { LineupSlot, DjData } from "../lib/lineupService";
 import {
   fetchLineupSlots,
@@ -115,12 +115,10 @@ export function EventLineupPage({
         </div>
 
         <aside className="lineup-sidebar">
-          <div className="timetable-sticky">
-            <TimeTable
-              eventId={eventId}
-              eventName={eventName}
-            />
-          </div>
+          <TimeTableSidebar
+            eventId={eventId}
+            eventName={eventName}
+          />
         </aside>
       </div>
 

@@ -9,7 +9,7 @@ import {
   copyWhatsappConfirmation,
 } from "../lib/lineupService";
 import { EditDjModal } from "./EditDjModal";
-import { TimeTable } from "./TimeTable";
+import { TimeTableSidebar } from "./TimeTableSidebar";
 
 interface AdminSlotCardProps {
   slot: LineupSlot;
@@ -281,12 +281,10 @@ export function AdminLineupPage({ eventId, eventName }: AdminLineupPageProps) {
         </div>
 
         <aside className="lineup-sidebar">
-          <div className="timetable-sticky">
-            <TimeTable
-              eventId={eventId}
-              eventName={eventName}
-            />
-          </div>
+          <TimeTableSidebar
+            eventId={eventId}
+            eventName={eventName}
+          />
         </aside>
       </div>
 

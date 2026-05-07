@@ -275,3 +275,59 @@
   letter-spacing: 4px;
   text-transform: uppercase;
 }
+
+.timetable-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.timetable-download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 16px;
+  background: rgba(191, 0, 255, 0.1);
+  border: 1px solid rgba(191, 0, 255, 0.3);
+  border-radius: 8px;
+  color: rgba(191, 0, 255, 0.9);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 1px;
+}
+
+.timetable-download-btn:hover:not(:disabled) {
+  background: rgba(191, 0, 255, 0.2);
+  border-color: rgba(191, 0, 255, 0.6);
+  box-shadow: 0 0 15px rgba(191, 0, 255, 0.3);
+  color: #fff;
+}
+
+.timetable-download-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  animation: btnPulse 1s ease-in-out infinite;
+}
+
+@keyframes btnPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.3; }
+}
+
+.download-icon {
+  flex-shrink: 0;
+}
+
+.timetable-export-hidden {
+  position: fixed;
+  top: -9999px;
+  left: -9999px;
+  width: 420px;
+  z-index: -1;
+  pointer-events: none;
+}
