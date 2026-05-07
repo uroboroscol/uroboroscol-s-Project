@@ -9,6 +9,7 @@ import {
   copyWhatsappConfirmation,
 } from "../lib/lineupService";
 import { EditDjModal } from "./EditDjModal";
+import { TimeTable } from "./TimeTable";
 
 interface AdminSlotCardProps {
   slot: LineupSlot;
@@ -287,6 +288,16 @@ export function AdminLineupPage({ eventId, eventName }: AdminLineupPageProps) {
           onSubmit={handleEditSubmit}
         />
       )}
+
+      <div className="admin-timetable-preview">
+        <h2 className="section-title">Previsualización del Poster</h2>
+        <TimeTable 
+          eventId={eventId} 
+          eventName={eventName} 
+          slots={slots} 
+          loading={loading} 
+        />
+      </div>
     </div>
   );
 }

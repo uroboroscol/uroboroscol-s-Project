@@ -9,6 +9,7 @@ import {
   reserveLineupSlot,
   copyWhatsappConfirmation,
 } from "../lib/lineupService";
+import { TimeTable } from "./TimeTable";
 
 interface EventLineupPageProps {
   eventId: string;
@@ -121,6 +122,16 @@ export function EventLineupPage({
           onSubmit={handleSubmit}
         />
       )}
+
+      <div className="public-timetable-preview">
+        <h2 className="section-title">Time Table Oficial</h2>
+        <TimeTable 
+          eventId={eventId} 
+          eventName={eventName} 
+          slots={slots} 
+          loading={loading} 
+        />
+      </div>
     </div>
   );
 }
