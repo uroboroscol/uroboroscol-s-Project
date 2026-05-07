@@ -1,11 +1,23 @@
 import { useSearchParams } from "react-router-dom";
 import { EventLineupPage } from "./components/EventLineupPage";
 import { AdminLineupPage } from "./components/AdminLineupPage";
+import { TimeTable } from "./components/TimeTable";
 import "./components/components.css";
+import "./components/timetable.css";
 
 function App() {
   const [searchParams] = useSearchParams();
   const isAdmin = searchParams.get("admin") === "true";
+  const isTimeTable = searchParams.get("view") === "timetable";
+
+  if (isTimeTable) {
+    return (
+      <TimeTable
+        eventId="enter-the-signal-privado-1"
+        eventName="ENTER THE SIGNAL"
+      />
+    );
+  }
 
   return (
     <div className="app-container">
