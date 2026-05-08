@@ -249,6 +249,14 @@
   letter-spacing: 1px;
 }
 
+.slot-comment {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.35);
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
 .timetable-footer {
   display: flex;
   align-items: center;

@@ -113,6 +113,9 @@ export function TimeTable({ eventId, eventName, exportMode = false, slots: exter
                     {slot.status === "Confirmado" && slot.musicGenre && (
                       <span className="slot-genre">{slot.musicGenre}</span>
                     )}
+                    {slot.comment && (
+                      <span className="slot-comment">{slot.comment}</span>
+                    )}
                   </div>
                 </div>
               ))}
